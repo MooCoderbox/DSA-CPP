@@ -145,6 +145,21 @@ void matrixMultiplication_Strassen(int ** A, int ** B, int N, coord<int> stA, co
     sum(P[5], P[1], start_00, start_00, C, start_22C, size);
     sub(C, P[3], start_22C, start_00, C, start_22C, size);
     sub(C, P[7], start_22C, start_00, C, start_22C, size);
+
+    for (int i = 1; i < 8; i++) {
+        for (int j = 0; j<N/2; j++) {
+            delete [] P_new[i][j];
+        }
+        delete [] P_new[i];
+    }
+    delete [] P_new;
+    for (int i = 1; i < 11; i++) {
+        for (int j = 0; j<N/2; j++) {
+            delete [] S_new[i][j];
+        }
+        delete [] S_new[i];
+    }
+    delete [] S_new;
 }
 
 void matrixMultiplication_SA(int ** A, int ** B, int N, int **C) {
@@ -171,5 +186,20 @@ void matrixMultiplication_SA(int ** A, int ** B, int N, int **C) {
         
     }
     matrixMultiplication_Strassen(A, B, N, st, st, C, st, S_new, P_new);
+
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j<N/2; j++) {
+            delete [] P_new[i][j];
+        }
+        delete [] P_new[i];
+    }
+    delete [] P_new;
+    for (int i = 0; i < 11; i++) {
+        for (int j = 0; j<N/2; j++) {
+            delete [] S_new[i][j];
+        }
+        delete [] S_new[i];
+    }
+    delete [] S_new;
     
 }
